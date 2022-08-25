@@ -20,10 +20,4 @@ RSpec.describe "park index page", type: :feature do
       
     end
   end
-  # xit 'I see each child in the system' do
-  #   city = City.create!(name: 'Colorado Springs', population: 100, state_capital: false)
-
-  #   park_1 = Park.create!(name: 'Nancy Lewis Park', acres: 8.9)
-  # end
-  # it "including the child's attributes"
 end

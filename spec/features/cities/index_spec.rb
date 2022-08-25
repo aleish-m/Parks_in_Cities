@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "cities index page", type: :feature do
+
   describe "as a visitor" do
+
     describe 'when I visit /cities' do
       it 'then I see the name of each parent record in the system' do
         city = City.create!(name: 'Denver', population: 1000, state_capital: true)
