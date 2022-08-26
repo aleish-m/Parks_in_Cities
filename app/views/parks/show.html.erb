@@ -1,0 +1,22 @@
+<h1><%= @park.name %></h1>
+
+<h4>Total Park Acreage: <%= @park.acres %></h4>
+<h4>Visitor Center: 
+<% if @park.visitor_center == true %>
+<%= "Yes" %>
+<% else %>
+<%= "No" %>
+<% end %>
+</h4>
+
+<h4>Playground: 
+<% if @park.playground == true %>
+<%= "Yes" %>
+<% else %>
+<%= "No" %>
+<% end %>
+</h4>
+
+<h4>Park Opens at: <%= @park.opening_hour %> AM</h4>
+
+<h4>Park Closes at: <%= @park.closing_hour %> PM</h4>

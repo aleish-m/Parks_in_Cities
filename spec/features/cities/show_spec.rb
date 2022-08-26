@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "cities index page", type: :feature do
+RSpec.describe "cities show page", type: :feature do
 
   describe "as a visitor" do
 
@@ -16,7 +16,7 @@ RSpec.describe "cities index page", type: :feature do
 
       end
 
-      it 'I see the parent with that id including the population' do
+      it 'I see the city with that id including the population' do
         city = City.create!(name: 'Denver', population: 1000, state_capital: true)
         city_2 = City.create!(name: 'Colorado Springs', population: 120, state_capital: false)
 
@@ -27,7 +27,7 @@ RSpec.describe "cities index page", type: :feature do
 
       end
       
-      it 'I see the parent with that id including if it is the State Capital' do
+      it 'I see the city with that id including if it is the State Capital' do
         city = City.create!(name: 'Denver', population: 1000, state_capital: true)
         city_2 = City.create!(name: 'Colorado Springs', population: 100, state_capital: false)
 
