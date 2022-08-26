@@ -1,5 +1,8 @@
 <h1>Cities Index</h1>
 
 <% @cities.each do |city| %>
-  <p><%= city.name %></p>
-<% end %>
+  <p>
+    <b><%= city.name %></b>
+    <%="(created: #{city.created_at.strftime("%m/%d/%Y")})" %>
+  </p>
+  <% end %>
