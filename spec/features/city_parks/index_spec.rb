@@ -6,7 +6,7 @@ RSpec.describe "city parks index page", type: :feature do
 
     describe 'when I visit /cities/:city_id/parks' do
       before :each do
-        
+
         @city_1 = City.create!(name: 'Colorado Springs', population: 100, state_capital: false)
 
         @park_1 = @city_1.parks.create!(name: 'Nancy Lewis Park', acres: 8.9, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 10)
