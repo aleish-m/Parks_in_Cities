@@ -1,0 +1,21 @@
+<h1><%= @city.name %> </h1>
+
+<% @city.parks.each do |park| %>
+  <h3><%= park.name %></h3>
+  <p>Park Size: <%= park.acres %> acres</p>
+  <p>Visitor Center? 
+    <% if park.visitor_center == true %>
+      <%= "Yes" %>
+    <% else %>
+      <%= "No" %>
+    <% end %>
+  </p>
+  <p>Playground? 
+    <% if park.playground == true %>
+      <%= "Yes" %>
+    <% else %>
+      <%= "No" %>
+    <% end %>
+  </p>
+  <p>Park Hours: <%= park.opening_hour %> AM - <%= park.closing_hour %> PM</p>
+<% end %>
