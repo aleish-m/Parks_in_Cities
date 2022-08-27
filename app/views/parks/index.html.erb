@@ -1,9 +1,14 @@
+<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
+    <a href="/cities" style="margin: 20px;">City Index</a>
+    <a href="/parks" style="margin: 20px;">Park Index</a>
+</nav>
+
 <h1>Park Index</h1>
 
 <% @parks.each do |park| %>
   <h3><%= park.name %></h3>
-  <p>Acres: <%= park.acres %></p>
-  <p>Has Visitor Center? <%= park.visitor_center %></p>
-  <p>Has Playground? <%= park.playground %></p>
-  <p>Park Hours: <%= park.opening_hour %> AM - <%= park.closing_hour %> PM</p>
+  <p><b>Acres: </b><%= park.acres %></p>
+  <p><b>Has Visitor Center? </b><%= park.visitor_center %></p>
+  <p><b>Has Playground? </b><%= park.playground %></p>
+  <p><b>Park Hours: </b><%= park.opening_hour %> AM - <%= park.closing_hour %> PM</p>
 <% end %>

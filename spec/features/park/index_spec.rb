@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "park index page", type: :feature do
-  describe "as a visitor" do
+RSpec.describe 'park index page', type: :feature do
+  
+  describe 'as a visitor' do
     describe 'when I visit /parks' do
       before :each do
         @city_1 = City.create!(name: 'Colorado Springs', population: 100, state_capital: false)
@@ -13,6 +14,7 @@ RSpec.describe "park index page", type: :feature do
 
       it 'I see each Park name in the system' do 
         visit '/parks'
+        save_and_open_page
 
         expect(page).to have_content(@park_1.name)
         expect(page).to have_content(@park_2.name)
@@ -20,7 +22,7 @@ RSpec.describe "park index page", type: :feature do
       end
 
       it 'I see the park with that id including the number of acres' do 
-        visit "/parks"
+        visit '/parks'
 
         expect(page).to have_content(@park_1.acres)
         expect(page).to have_content(@park_2.acres)
@@ -28,25 +30,40 @@ RSpec.describe "park index page", type: :feature do
       end
 
       it 'I see the park with that id including if it has a visitor center' do
-        visit "/parks"
+        visit '/parks'
 
-        expect(page).to have_content("Has Visitor Center? false")
-        expect(page).to have_content("Has Visitor Center? true")
+        expect(page).to have_content('Has Visitor Center? false')
+        expect(page).to have_content('Has Visitor Center? true')
       end
 
       it 'I see the park with that id including if it has a visitor center' do
-        visit "/parks"
+        visit '/parks'
 
-        expect(page).to have_content("Has Playground? true")
-        expect(page).to have_content("Has Playground? false")
+        expect(page).to have_content('Has Playground? true')
+        expect(page).to have_content('Has Playground? false')
       end
 
       it 'I see the park with that id including its opening and closing hours' do
-        visit "/parks"
-        save_and_open_page
+        visit '/parks'
 
-        expect(page).to have_content("Park Hours: 5 AM - 10 PM")
-        expect(page).to have_content("Park Hours: 5 AM - 9 PM")
+        expect(page).to have_content('Park Hours: 5 AM - 10 PM')
+        expect(page).to have_content('Park Hours: 5 AM - 9 PM')
+      end
+
+      it 'I see a link at the top of the page that takes me to the Park Index' do
+        visit '/parks'
+
+        find_link('Park Index').visible?
+        click_link 'Park Index'
+        expect(page).to have_current_path (parks_path)
+      end
+
+      it 'I see a link at the top of the page that takes me to the City Index'do
+        visit '/parks'
+
+        find_link('City Index').visible?
+        click_link 'City Index'
+        expect(page).to have_current_path(cities_path)
       end
     end
   end

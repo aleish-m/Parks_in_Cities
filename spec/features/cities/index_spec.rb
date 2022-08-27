@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "cities index page", type: :feature do
+RSpec.describe 'cities index page', type: :feature do
 
   describe "as a visitor" do
 
@@ -35,6 +35,23 @@ RSpec.describe "cities index page", type: :feature do
 
         expect(page).to have_content('Fort Collins (created: 08/22/2022')
       end
+
+      it 'I see a link at the top of the page that takes me to the Park Index' do
+        visit '/cities/'
+
+        find_link('Park Index').visible?
+        click_link 'Park Index'
+        expect(page).to have_current_path (parks_path)
+      end
+
+      it 'I see a link at the top of the page that takes me to the City Index'do
+        visit '/cities/'
+
+        find_link('City Index').visible?
+        click_link 'City Index'
+        expect(page).to have_current_path(cities_path)
+      end
+
     end
   end
 end

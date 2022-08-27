@@ -1,21 +1,26 @@
+<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
+    <a href="/cities" style="margin: 20px;">City Index</a>
+    <a href="/parks" style="margin: 20px;">Park Index</a>
+</nav>
+
 <h1><%= @city.name %> </h1>
 
 <% @city.parks.each do |park| %>
   <h3><%= park.name %></h3>
-  <p>Park Size: <%= park.acres %> acres</p>
-  <p>Visitor Center? 
-    <% if park.visitor_center == true %>
-      <%= "Yes" %>
-    <% else %>
-      <%= "No" %>
-    <% end %>
+  <p><b>Park Size: </b><%= park.acres %> acres</p>
+  <p><b>Visitor Center? </b>
+  <% if park.visitor_center == true %>
+    <%= "Yes" %>
+  <% else %>
+    <%= "No" %>
+  <% end %>
   </p>
-  <p>Playground? 
-    <% if park.playground == true %>
-      <%= "Yes" %>
-    <% else %>
-      <%= "No" %>
-    <% end %>
+  <p><b>Playground? </b>
+  <% if park.playground == true %>
+    <%= "Yes" %>
+  <% else %>
+    <%= "No" %>
+  <% end %>
   </p>
-  <p>Park Hours: <%= park.opening_hour %> AM - <%= park.closing_hour %> PM</p>
+  <p><b>Park Hours: </b><%= park.opening_hour %> AM - <%= park.closing_hour %> PM</p>
 <% end %>
