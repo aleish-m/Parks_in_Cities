@@ -5,8 +5,10 @@ RSpec.describe "park show page", type: :feature do
 
     describe 'when I visit /parks/:id' do
       before :each do
-        @park_1 = Park.create!(name: 'Nancy Lewis Park', acres: 8.9, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 10)
-        @park_2 = Park.create!(name: 'Garden of the Gods', acres: 1341.3, visitor_center: true, playground: false, opening_hour: 5, closing_hour: 9)
+        @city_1 = City.create!(name: 'Colorado Springs', population: 100, state_capital: false)
+        
+        @park_1 = @city_1.parks.create!(name: 'Nancy Lewis Park', acres: 8.9, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 10)
+        @park_2 = @city_1.parks.create!(name: 'Garden of the Gods', acres: 1341.3, visitor_center: true, playground: false, opening_hour: 5, closing_hour: 9)
       end
 
       it 'I see the name of the Park with that id' do
