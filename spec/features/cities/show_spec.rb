@@ -57,6 +57,14 @@ RSpec.describe 'cities show page', type: :feature do
         click_link 'City Index'
         expect(page).to have_current_path(cities_path)
       end
+
+      it "I see a link I see a link to take me to that City's Parks page" do
+        visit "/cities/#{@city.id}"
+
+        find_link('See Parks').visible?
+        click_link 'See Parks'
+        expect(page).to have_current_path("/cities/#{@city.id}/parks")
+      end
     end
   end
 end
