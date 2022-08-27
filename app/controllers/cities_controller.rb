@@ -8,6 +8,10 @@ class CitiesController < ApplicationController
   end
 
   def new
-    
+  end
+
+  def create
+    city = City.create!(name: params[:city_name], population: params[:city_population], state_capital: params[:state_capital])
+    redirect_to '/cities'
   end
 end
