@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "city parks index page", type: :feature do
+RSpec.describe 'city parks index page', type: :feature do
 
-  describe "as a visitor" do
-
+  describe 'as a visitor' do
     describe 'when I visit /cities/:city_id/parks' do
       before :each do
 
@@ -35,22 +34,38 @@ RSpec.describe "city parks index page", type: :feature do
       it 'I see if each park has a visitor center' do
         visit "/cities/#{@city_1.id}/parks"
 
-        expect(page).to have_content("Visitor Center? Yes")
-        expect(page).to have_content("Visitor Center? No")
+        expect(page).to have_content('Visitor Center? Yes')
+        expect(page).to have_content('Visitor Center? No')
       end
 
       it 'I see if each park has a playground' do
         visit "/cities/#{@city_1.id}/parks"
 
-        expect(page).to have_content("Playground? Yes")
-        expect(page).to have_content("Playground? No")
+        expect(page).to have_content('Playground? Yes')
+        expect(page).to have_content('Playground? No')
       end
 
       it 'I see when each park opens and closes' do
         visit "/cities/#{@city_1.id}/parks"
 
-        expect(page).to have_content("Park Hours: 5 AM - 10 PM")
-        expect(page).to have_content("Park Hours: 5 AM - 9 PM")
+        expect(page).to have_content('Park Hours: 5 AM - 10 PM')
+        expect(page).to have_content('Park Hours: 5 AM - 9 PM')
+      end
+
+      it 'I see a link at the top of the page that takes me to the Park Index' do
+        visit "/cities/#{@city_1.id}/parks"
+
+        find_link('Park Index').visible?
+        click_link 'Park Index'
+        expect(page).to have_current_path (parks_path)
+      end
+
+      it 'I see a link at the top of the page that takes me to the City Index'do
+        visit "/cities/#{@city_1.id}/parks"
+
+        find_link('City Index').visible?
+        click_link 'City Index'
+        expect(page).to have_current_path(cities_path)
       end
     end
   end

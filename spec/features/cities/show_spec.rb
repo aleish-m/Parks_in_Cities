@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "cities show page", type: :feature do
+RSpec.describe 'cities show page', type: :feature do
 
-  describe "as a visitor" do
-
+  describe 'as a visitor' do
     describe 'when I visit /cities/:id' do
       before :each do
         @city = City.create!(name: 'Denver', population: 1000, state_capital: true)
@@ -15,6 +14,7 @@ RSpec.describe "cities show page", type: :feature do
 
       it 'I see the name of the City with that id' do
         visit "/cities/#{@city.id}"
+        save_and_open_page
 
         expect(page).to have_content(@city.name)
         expect(page).to_not have_content(@city_2.name)
@@ -32,16 +32,30 @@ RSpec.describe "cities show page", type: :feature do
       it 'I see the @city with that id including if it is the State Capital' do
         visit "/cities/#{@city.id}"
 
-        expect(page).to have_content("State Capital? Yes")
-        expect(page).to_not have_content("State Capital? No")
+        expect(page).to have_content('State Capital? Yes')
+        expect(page).to_not have_content('State Capital? No')
       end
 
       it 'I see a count of the number of parks in this @city' do
         visit "/cities/#{@city.id}"
 
-        save_and_open_page
+        expect(page).to have_content('Number of Parks: 2')
+      end
 
-        expect(page).to have_content("Number of Parks: 2")
+        it 'I see a link at the top of the page that takes me to the Park Index' do
+        visit "/cities/#{@city.id}"
+
+        find_link('Park Index').visible?
+        click_link 'Park Index'
+        expect(page).to have_current_path (parks_path)
+      end
+
+      it 'I see a link at the top of the page that takes me to the City Index'do
+        visit "/cities/#{@city.id}"
+
+        find_link('City Index').visible?
+        click_link 'City Index'
+        expect(page).to have_current_path(cities_path)
       end
     end
   end

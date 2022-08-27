@@ -1,9 +1,17 @@
-<h1><%= @city.name %> </h1>
-<p><b>Population:</b> <%= @city.population%></p>
-<p><b>Is the State Capital?</b> 
+<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
+    <a href="/cities" style="margin: 20px;">City Index</a>
+    <a href="/parks" style="margin: 20px;">Park Index</a>
+</nav>
+
+<h1><%= @city.name %></h1>
+
+<p><b>Population: </b><%= @city.population%></p>
+
+<p><b>Is the State Capital? </b>
 <% if @city.state_capital == true %>
   <%= "Yes" %>
 <% else %>
   <%= "No" %>
 <% end %> </p>
-<p><b>Number of Parks:</b> <%= @city.park_count %></p>
+
+<p><b>Number of Parks: </b><%= @city.park_count %></p>

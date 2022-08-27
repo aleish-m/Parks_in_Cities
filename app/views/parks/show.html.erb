@@ -1,22 +1,28 @@
+<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
+    <a href="/cities" style="margin: 20px;">City Index</a>
+    <a href="/parks" style="margin: 20px;">Park Index</a>
+</nav>
+
 <h1><%= @park.name %></h1>
 
-<h4>Total Park Acreage: <%= @park.acres %></h4>
-<h4>Visitor Center: 
-  <% if @park.visitor_center == true %>
-    <%= "Yes" %>
-  <% else %>
-    <%= "No" %>
-  <% end %>
-</h4>
+<p><b>Total Park Acreage: </b><%= @park.acres %></p>
 
-<h4>Playground: 
-  <% if @park.playground == true %>
-    <%= "Yes" %>
-  <% else %>
-    <%= "No" %>
-  <% end %>
-</h4>
+<p><b>Visitor Center: </b>
+<% if @park.visitor_center == true %>
+  <%= "Yes" %>
+<% else %>
+  <%= "No" %>
+<% end %>
+</p>
 
-<h4>Park Opens at: <%= @park.opening_hour %> AM</h4>
+<p><b>Playground: </b>
+<% if @park.playground == true %>
+  <%= "Yes" %>
+<% else %>
+  <%= "No" %>
+<% end %>
+</p>
 
-<h4>Park Closes at: <%= @park.closing_hour %> PM</h4>
+<p><b>Park Opens at: </b><%= @park.opening_hour %> AM</p>
+
+<p><b>Park Closes at: </b><%= @park.closing_hour %> PM</p>
