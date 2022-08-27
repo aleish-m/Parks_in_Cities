@@ -1,8 +1,9 @@
 <h1><%= @city.name %> </h1>
-<h4>Population: <%= @city.population%></h4>
-<h4>Is the State Capital? 
+<p><b>Population:</b> <%= @city.population%></p>
+<p><b>Is the State Capital?</b> 
 <% if @city.state_capital == true %>
   <%= "Yes" %>
 <% else %>
   <%= "No" %>
-<% end %> </h4>
+<% end %> </p>
+<p><b>Number of Parks:</b> <%= @city.park_count %></p>
