@@ -43,6 +43,7 @@ group :development, :test do
   gem 'launchy' #save_and_open_page
   gem 'simplecov'
   gem 'orderly'
+  gem 'shoulda-matchers', '~> 5.0'
 end
 
 group :development do
