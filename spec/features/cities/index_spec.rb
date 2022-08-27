@@ -52,6 +52,34 @@ RSpec.describe 'cities index page', type: :feature do
         expect(page).to have_current_path(cities_path)
       end
 
+      it 'I see a link to create a new City record, "Add New City" when I click this link, I am taken to "/cities/new"' do
+        visit '/cities/'
+
+        find_link('Add New City').visible?
+        click_link 'Add New City'
+        expect(page).to have_current_path(cities_new_path)
+      end
+
+      it "Where I  see a form for a new city record I fill out the form with a new city's attributes:" do
+        visit '/cities/new'
+
+        save_and_open_page
+
+        fill_in("city_name", with: "Boulder")
+        fill_in("city_population", with: 3000)
+        choose("No")
+
+        click_button('Add City')
+      end
+
+      it ""
+
+      it 'I click the button "Create City" to submit the form'
+
+      it "A 'POST' request is sent to the '/cities' route, a new city record is created"
+
+      it "I am redirected to the City Index page where I see the new City displayed"
+
     end
   end
 end

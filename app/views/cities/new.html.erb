@@ -1,0 +1,25 @@
+<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
+    <a href="/cities" style="margin: 20px;">City Index</a>
+    <a href="/parks" style="margin: 20px;">Park Index</a>
+</nav>
+
+<h2>Please fill in this form to add a new City.</h2>
+
+<%# <%= form_with url: '/cities', method: :post, local: true do |form| %>
+  <%# <%= form.label :city_name%>
+<%# <% end %>
+
+<form action="/cities" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <p><lable>City Name:
+  <input type='text' name='city_name' placeholder='City'required/></lable></p>
+
+  <p><lable>City Population:
+  <input type='number' name='city_population' placeholder='1,000,000' required></lable></p>
+
+  <p><lable>Is this City the State Capital?</lable></p>
+  <p><lable>Yes<input type='radio' name='city[state_capital]' id='Yes' value='true'></lable>
+  <lable>No<input type='radio' name='city[state_capital]' id= 'No' value='false' checked></lable></p>
+
+  <input type='submit' value='Add City'/>
+</form>
