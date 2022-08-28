@@ -8,14 +8,12 @@ RSpec.describe 'cities show page', type: :feature do
       @city_2= City.create!(name: 'Colorado Springs', population: 190, state_capital: false)
 
       @park_1 = @city.parks.create!(name: 'City Park', acres: 330, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 11)
-      @park_2 = @city.parks.create!(name: "Sloan's Lake Park", acres: 177, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 11)
+      @park_2 = @city_2.parks.create!(name: "Sloan's Lake Park", acres: 177, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 11)
     end
 
     describe 'when I visit /cities/:id' do
       it 'I see a link to delete the city' do
         visit "/cities/#{@city.id}"
-
-        save_and_open_page
 
         find_button("Delete #{@city.name}").visible?
       end
@@ -24,6 +22,15 @@ RSpec.describe 'cities show page', type: :feature do
         visit "/cities/#{@city.id}"
 
         click_button("Delete #{@city.name}")
+
+        expect(current_path).to eq("/cities")
+        save_and_open_page
+        expect(page).to_not have_content('Denver')
+
+        visit '/parks'
+
+        expect(page).to_not have_content('City Park')
+        expect(page).to have_content("Sloan's Lake Park")
       end
     end
   end 
