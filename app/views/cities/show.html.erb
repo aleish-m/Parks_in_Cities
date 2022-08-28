@@ -5,6 +5,8 @@
 
 <h1><%= @city.name %></h1>
 
+<p><a href="/cities/<%= @city.id %>/edit">Update <%= @city.name%>'s Info </a></p>
+
 <p><b>Population: </b><%= @city.population%></p>
 
 <p><b>Is the State Capital? </b>
@@ -14,6 +16,11 @@
   <%= "No" %>
 <% end %> </p>
 
-<p><b>Number of Parks: </b><%= @city.park_count %></p>
-<p><a href="/cities/<%= @city.id %>/parks">See Parks</a></p>
-<p><a href="/cities/<%= @city.id %>/edit">Update City Info</a></p>
+<p><b>Number of Parks: </b><%= @city.park_count %>
+<a href="/cities/<%= @city.id %>/parks" style="margin: 10px;"> See Parks </a></p>
+
+<form action="/cities/<%= @city.id %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete <%= @city.name %>"/>
+  </form>
