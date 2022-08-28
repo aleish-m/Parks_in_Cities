@@ -4,16 +4,56 @@ RSpec.describe 'parks edit page', type: :feature do
 
   describe "as a visitor" do
 
-    describe 'when I visit /parks/:id' do
-      before :each do
+    before :each do
 
-        @city = City.create!(name: 'Colorado Springs', population: 100, state_capital: false)
+      @city = City.create!(name: 'Colorado Springs', population: 100, state_capital: false)
 
-        @park_1 = @city.parks.create!(name: 'Nancy Lewis Park', acres: 9, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 10)
-        @park_2 = @city.parks.create!(name: 'America the Beautiful Park', acres: 17, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 10)
-        @park_3 = @city.parks.create!(name: 'Garden of the Gods', acres: 1341, visitor_center: true, playground: false, opening_hour: 5, closing_hour: 9)
+      @park_1 = @city.parks.create!(name: 'Nancy Lewis Park', acres: 9, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 10)
+      @park_2 = @city.parks.create!(name: 'America the Beautiful Park', acres: 17, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 10)
+      @park_3 = @city.parks.create!(name: 'Garden of the Gods', acres: 1341, visitor_center: true, playground: false, opening_hour: 5, closing_hour: 9)
 
+    end
+
+    describe 'when I visit /parks' do
+
+      it 'I see a link to "Update Park Info", when I click the link "Update Park Info" then I am taken to "/parks/:id/edit"' do
+        visit "/parks"
+        save_and_open_page
+
+        find_link({text:'Update Park Info', :href => "/parks/#{@park_1.id}/edit"}).visible?
+        click_link ({text:'Update Park Info', :href => "/parks/#{@park_1.id}/edit"})
+        expect(page).to have_current_path("/parks/#{@park_1.id}/edit")
       end
+
+      it 'I see a link to "Update Park Info", next to all records"' do
+        visit "/parks"
+
+        find_link({text:'Update Park Info', :href => "/parks/#{@park_2.id}/edit"}).visible?
+        click_link ({text:'Update Park Info', :href => "/parks/#{@park_2.id}/edit"})
+      end
+    end
+
+    describe 'when I visit /cities/:id/parks' do
+
+      it 'I see a link to "Update Park Info", when I click the link "Update Park Info" then I am taken to "/parks/:id/edit"' do
+        visit "/cities/#{@city.id}/parks"
+        save_and_open_page
+
+        find_link({text:'Update Park Info', :href => "/parks/#{@park_1.id}/edit"}).visible?
+        click_link ({text:'Update Park Info', :href => "/parks/#{@park_1.id}/edit"})
+        expect(page).to have_current_path("/parks/#{@park_1.id}/edit")
+      end
+
+      it 'I see a link to "Update Park Info", next to all records"' do
+        visit "/cities/#{@city.id}/parks"
+
+        find_link({text:'Update Park Info', :href => "/parks/#{@park_2.id}/edit"}).visible?
+        find_link({text:'Update Park Info', :href => "/parks/#{@park_3.id}/edit"}).visible?
+        click_link ({text:'Update Park Info', :href => "/parks/#{@park_2.id}/edit"})
+      end
+    end
+
+    describe 'when I visit /parks/:id' do
 
       it 'I see a link to "Update Park Info", when I click the link "Update Park Info" then I am taken to "/parks/:id/edit"' do
         visit "/parks/#{@park_1.id}"
@@ -23,8 +63,11 @@ RSpec.describe 'parks edit page', type: :feature do
         click_link 'Update Park Info'
         expect(page).to have_current_path("/parks/#{@park_1.id}/edit")
       end
+    end
 
-      it 'When I am on "/parks/:id/edit" I  see a form to edit the city attributes:' do
+
+    describe 'when I visit /parks/:id/edit' do
+      it 'I  see a form to edit the city attributes:' do
         visit "/parks/#{@park_1.id}/edit"
         
         expect(page.has_field? "park_name").to be true
