@@ -6,11 +6,18 @@
 <form action="/cities/<%= @city.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="PATCH" />
-  <h2>Edit City</h2>
-  <p>City Name: <input type='text' name='city_name' value="<%= @city.name %>"/></p>
-  <p>Population: <input type='text' name='city_population' value="<%= @city.population %>"/></p>
-  <p>Is this City the State Capital?</p>
+
+  <h2>Edit City Info for <%= @city.name %></h2>
+
+  <p><lable>City Name: 
+  <input type='text' name='city_name' value="<%= @city.name %>"/></lable></p>
+
+  <p><lable>Population: 
+  <input type='text' name='city_population' value="<%= @city.population %>"/></lable></p>
+
+  <p><lable>Is this City the State Capital?</lable></p>
   <p><lable><input type='radio' name='state_capital' id='Yes' value='true'> Yes</lable>
   <lable><input type='radio' name='state_capital' id= 'No' value='false' checked> No </lable></p>
+  
   <input type='submit' value='Submit'/>
 </form>

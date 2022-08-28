@@ -9,6 +9,8 @@ RSpec.describe 'cities new page', type: :feature do
       it 'I see a link to create a new City record, "Add New City" when I click this link, I am taken to "/cities/new"' do
         visit '/cities/'
 
+        save_and_open_page
+
         find_link('Add New City').visible?
         click_link 'Add New City'
         expect(page).to have_current_path(cities_new_path)
@@ -37,17 +39,16 @@ RSpec.describe 'cities new page', type: :feature do
       it "Where I  see a form for a new city record I fill out the form with a new city's attributes: and click the button 'Create City' to submit the form" do
         visit '/cities/new'
 
-        save_and_open_page
-
-        fill_in("city_name", with: "Boulder")
-        fill_in("city_population", with: 3000)
-        choose("No")
-
-        click_button('Add City')
+        expect(page.has_field? "city_name").to be true
+        expect(page.has_field? "city_population").to be true
+        expect(page.has_field? "state_capital").to be true
+        find_button('Add City').visible?
       end
 
       it "A 'POST' request is sent to the '/cities' route, a new city record is created and I am redirected to the City Index page where I see the new City displayed" do 
         visit '/cities/new'
+
+        save_and_open_page
 
         fill_in("city_name", with: "Boulder")
         fill_in("city_population", with: 3000)
