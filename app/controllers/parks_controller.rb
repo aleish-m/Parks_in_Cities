@@ -1,6 +1,6 @@
 class ParksController < ApplicationController
   def index
-    @parks = Park.all
+    @parks = Park.where(playground: true)
   end
 
   def show
