@@ -70,8 +70,8 @@ RSpec.describe 'parks edit page', type: :feature do
       it 'I  see a form to edit the city attributes:' do
         visit "/parks/#{@park_1.id}/edit"
         
-        expect(page.has_field? "park_name").to be true
-        expect(page.has_field? "park_acres").to be true
+        expect(page.has_field? "name").to be true
+        expect(page.has_field? "acres").to be true
         expect(page.has_field? "visitor_center_no").to be true
         expect(page.has_field? "opening_hour").to be true
         expect(page.has_field? "closing_hour").to be true
@@ -83,7 +83,7 @@ RSpec.describe 'parks edit page', type: :feature do
 
         save_and_open_page
 
-        fill_in("park_name", with: "Duck Park")
+        fill_in("name", with: "Duck Park")
         choose("visitor_center_no")
         choose("playground_yes")
         fill_in("opening_hour", with: 5)

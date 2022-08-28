@@ -11,8 +11,14 @@ class CityParksController < ApplicationController
   def create
     @city = City.find(params[:id])
 
-    @city.parks.create!(name: params[:park_name], acres: params[:park_acres], visitor_center: params[:visitor_center], playground: params[:playground], opening_hour: params[:opening_hour], closing_hour: params[:closing_hour])
+    @city.parks.create!(park_params)
 
     redirect_to "/cities/#{@city.id}/parks"
+  end
+
+  private
+
+  def park_params 
+    params.permit(:name, :acres, :visitor_center, :playground, :opening_hour, :closing_hour)
   end
 end

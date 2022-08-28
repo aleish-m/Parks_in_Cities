@@ -11,7 +11,7 @@ class CitiesController < ApplicationController
   end
 
   def create
-    city = City.create!(name: params[:city_name], population: params[:city_population], state_capital: params[:state_capital])
+    city = City.create!(city_params)
     redirect_to '/cities'
   end
 
@@ -21,8 +21,20 @@ class CitiesController < ApplicationController
 
   def update
     city = City.find(params[:id])
-    city.update(name: params[:city_name], population: params[:city_population], state_capital: params[:state_capital])
+    city.update(city_params)
     city.save
     redirect_to "/cities/#{city.id}"
+  end
+
+  def destroy
+    city = City.find(params[:id])
+    city.destroy
+    redirect_to "/cities"
+  end
+
+  private
+
+  def city_params 
+    params.permit(:name, :population, :state_capital)
   end
 end

@@ -8,10 +8,10 @@
 <form action="/cities" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <p><lable>City Name:
-  <input type='text' name='city_name' placeholder='City'required/></lable></p>
+  <input type='text' name='name' placeholder='City'required/></lable></p>
 
   <p><lable>City Population:
-  <input type='number' name='city_population' placeholder='1,000,000' required></lable></p>
+  <input type='number' name='population' placeholder='1,000,000' required></lable></p>
 
   <p><lable>Is this City the State Capital?</lable></p>
   <p><lable><input type='radio' name='state_capital' id='Yes' value='true'> Yes </lable>
