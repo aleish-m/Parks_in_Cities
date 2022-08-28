@@ -8,7 +8,19 @@
 <% @parks.each do |park| %>
   <h3><%= park.name %></h3>
   <p><b>Acres: </b><%= park.acres %></p>
-  <p><b>Has Visitor Center? </b><%= park.visitor_center %></p>
-  <p><b>Has Playground? </b><%= park.playground %></p>
+  <p><b>Has Visitor Center? </b>
+    <% if park.visitor_center == true %>
+      <%= 'Yes' %>
+    <% else %>
+      <%= 'No' %>
+    <% end %>
+  </p>
+  <p><b>Has Playground? </b>
+    <% if park.playground == true %>
+      <%= 'Yes' %>
+    <% else %>
+      <%= 'No' %>
+    <% end %>
+  </p>
   <p><b>Park Hours: </b><%= park.opening_hour %> AM - <%= park.closing_hour %> PM</p>
 <% end %>
