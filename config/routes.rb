@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   post '/cities', to: 'cities#create'
   get '/cities/:id/edit', to: 'cities#edit'
   patch '/cities/:id', to: 'cities#update'
+  get '/cities/:id/parks/new', to: 'city_parks#new'
+  post '/cities/:id/parks', to: 'city_parks#create'
 end
