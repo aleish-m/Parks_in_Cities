@@ -16,7 +16,7 @@ RSpec.describe 'cities edit page', type: :feature do
   
     describe 'when I visit /cities' do
       
-      it 'Next to every city, I see a link to edit that citys info hen I click the link I should be taken to that city edit page where I can update its information'do
+      it 'Next to every city, I see a link to edit that citys info when I click the link I should be taken to that city edit page where I can update its information'do
         visit '/cities'
         save_and_open_page
         
@@ -32,8 +32,8 @@ RSpec.describe 'cities edit page', type: :feature do
         visit "/cities/#{@city.id}"
         save_and_open_page
         
-        find_link('Update City Info').visible?
-        click_link 'Update City Info'
+        find_link("Update #{@city.name}'s Info").visible?
+        click_link "Update #{@city.name}'s Info"
         expect(page).to have_current_path("/cities/#{@city.id}/edit")
       end
     end
