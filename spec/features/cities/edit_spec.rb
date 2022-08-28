@@ -43,8 +43,8 @@ RSpec.describe 'cities edit page', type: :feature do
       it 'When I am on "/cities/:id/edit" I  see a form to edit the city attributes:' do
         visit "/cities/#{@city.id}/edit"
 
-        expect(page.has_field? "city_name").to be true
-        expect(page.has_field? "city_population").to be true
+        expect(page.has_field? "name").to be true
+        expect(page.has_field? "population").to be true
         expect(page.has_field? "state_capital").to be true
         find_button('Submit').visible?
       end
@@ -54,8 +54,8 @@ RSpec.describe 'cities edit page', type: :feature do
 
         save_and_open_page
 
-        fill_in("city_name", with: "C Springs")
-        fill_in("city_population", with: 30000)
+        fill_in("name", with: "C Springs")
+        fill_in("population", with: 30000)
         choose("No")
 
         click_button('Submit')

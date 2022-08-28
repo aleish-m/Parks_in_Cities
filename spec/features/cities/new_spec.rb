@@ -39,8 +39,8 @@ RSpec.describe 'cities new page', type: :feature do
       it "Where I  see a form for a new city record I fill out the form with a new city's attributes: and click the button 'Create City' to submit the form" do
         visit '/cities/new'
 
-        expect(page.has_field? "city_name").to be true
-        expect(page.has_field? "city_population").to be true
+        expect(page.has_field? "name").to be true
+        expect(page.has_field? "population").to be true
         expect(page.has_field? "state_capital").to be true
         find_button('Add City').visible?
       end
@@ -50,8 +50,8 @@ RSpec.describe 'cities new page', type: :feature do
 
         save_and_open_page
 
-        fill_in("city_name", with: "Boulder")
-        fill_in("city_population", with: 3000)
+        fill_in("name", with: "Boulder")
+        fill_in("population", with: 3000)
         choose("No")
 
         click_button('Add City')

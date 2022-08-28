@@ -13,8 +13,15 @@ class ParksController < ApplicationController
 
   def update
     park = Park.find(params[:id])
-    park.update(name: params[:park_name], acres: params[:park_acres], visitor_center: params[:visitor_center], playground: params[:playground], opening_hour: params[:opening_hour], closing_hour: params[:closing_hour])
+    park.update(park_params)
     park.save
     redirect_to "/parks/#{park.id}"
+  end
+
+
+  private
+
+  def park_params 
+    params.permit(:name, :acres, :visitor_center, :playground, :opening_hour, :closing_hour)
   end
 end
