@@ -1,6 +1,7 @@
 class CityParksController < ApplicationController
   def index
     @city = City.find(params[:id])
+    @alpha_parks = @city.parks.order(:name)
   end
 
   def new
