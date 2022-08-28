@@ -25,4 +25,8 @@ class CitiesController < ApplicationController
     city.save
     redirect_to "/cities/#{city.id}"
   end
+
+  def destroy
+
+  end
 end
