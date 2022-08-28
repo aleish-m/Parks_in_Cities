@@ -9,6 +9,7 @@
   <p>
     <b><%= city.name %></b>
     <%="(created: #{city.created_at.strftime("%m/%d/%Y")})" %>
+    <a href="/cities/<%= city.id %>/edit">Update City Info</a>
   </p>
   <% end %>
 
