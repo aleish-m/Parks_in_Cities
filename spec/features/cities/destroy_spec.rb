@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'cities show page', type: :feature do
+RSpec.describe 'cities delete button', type: :feature do
 
   describe 'as a visitor' do
     before :each do
@@ -18,7 +18,7 @@ RSpec.describe 'cities show page', type: :feature do
         find_button("Delete #{@city.name}").visible?
       end
 
-      it 'When I click the link "Delete City", a "DELETE" request is sent to "/parents/:id" the parent is deleted, and all child records are deleted and I am redirected to the parent index page where I no longer see this parent' do
+      it 'When I click the link "Delete City", a "DELETE" request is sent to "/cities/:id" the city is deleted, and all park records are deleted and I am redirected to the city index page where I no longer see this city' do
         visit "/cities/#{@city.id}"
 
         click_button("Delete #{@city.name}")

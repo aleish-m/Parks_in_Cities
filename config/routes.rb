@@ -17,4 +17,5 @@ Rails.application.routes.draw do
   post '/cities/:id/parks', to: 'city_parks#create'
   get '/parks/:id/edit', to: 'parks#edit'
   patch '/parks/:id', to: 'parks#update'
+  delete '/parks/:id', to: 'parks#destroy'
 end
