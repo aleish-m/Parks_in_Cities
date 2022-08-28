@@ -5,6 +5,8 @@
 
 <h1><%= @city.name %> </h1>
 
+<p><a href="/cities/<%= @city.id %>/parks/new">Add New Park</a></p>
+
 <% @alpha_parks.each do |park| %>
   <h3><%= park.name %></h3>
   <p><b>Park Size: </b><%= park.acres %> acres</p>
@@ -23,6 +25,5 @@
   <% end %>
   </p>
   <p><b>Park Hours: </b><%= park.opening_hour %> AM - <%= park.closing_hour %> PM</p>
+  <p><a href="/parks/<%= park.id %>/edit">Update Park Info</a></p>
 <% end %>
-
-<p><a href="/cities/<%= @city.id %>/parks/new">Add New Park</a></p>
