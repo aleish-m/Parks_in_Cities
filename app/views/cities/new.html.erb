@@ -5,10 +5,6 @@
 
 <h2>Please fill in this form to add a new City.</h2>
 
-<%# <%= form_with url: '/cities', method: :post, local: true do |form| %>
-  <%# <%= form.label :city_name%>
-<%# <% end %>
-
 <form action="/cities" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <p><lable>City Name:
@@ -18,8 +14,8 @@
   <input type='number' name='city_population' placeholder='1,000,000' required></lable></p>
 
   <p><lable>Is this City the State Capital?</lable></p>
-  <p><lable>Yes<input type='radio' name='state_capital' id='Yes' value='true'></lable>
-  <lable>No<input type='radio' name='state_capital' id= 'No' value='false' checked></lable></p>
+  <p><lable><input type='radio' name='state_capital' id='Yes' value='true'> Yes </lable>
+  <lable><input type='radio' name='state_capital' id= 'No' value='false' checked> No </lable></p>
 
   <input type='submit' value='Add City'/>
 </form>
