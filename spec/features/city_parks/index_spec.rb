@@ -67,6 +67,17 @@ RSpec.describe 'city parks index page', type: :feature do
         click_link 'City Index'
         expect(page).to have_current_path(cities_path)
       end
+
+      it 'I see that records are in alphabetical order by name' do
+        visit "/cities/#{@city_1.id}/parks"
+
+        save_and_open_page
+        
+        expect('America the Beautiful Park').to appear_before('Garden of the Gods')
+        expect('America the Beautiful Park').to appear_before('Nancy Lewis Park')
+        expect('Garden of the Gods').to appear_before('Nancy Lewis Park')
+
+      end
     end
   end
 end
