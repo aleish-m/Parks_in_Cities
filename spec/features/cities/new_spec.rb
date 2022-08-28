@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'cities index page', type: :feature do
+RSpec.describe 'cities new page', type: :feature do
 
   describe "as a visitor" do
 

@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   get '/parks', to: 'parks#index'
   get '/parks/:id', to: 'parks#show'
   get '/cities/:id/parks', to: 'city_parks#index'
+  
   post '/cities', to: 'cities#create'
+  get '/cities/:id/edit', to: 'cities#edit'
+  patch '/cities/:id', to: 'cities#update'
 end

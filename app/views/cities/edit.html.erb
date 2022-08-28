@@ -1,0 +1,16 @@
+<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
+    <a href="/cities" style="margin: 20px;">City Index</a>
+    <a href="/parks" style="margin: 20px;">Park Index</a>
+</nav>
+
+<form action="/cities/<%= @city.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
+  <h2>Edit City</h2>
+  <p>City Name: <input type='text' name='city_name' value="<%= @city.name %>"/></p>
+  <p>Population: <input type='text' name='city_population' value="<%= @city.population %>"/></p>
+  <p>Is this City the State Capital?</p>
+  <p><lable><input type='radio' name='state_capital' id='Yes' value='true'> Yes</lable>
+  <lable><input type='radio' name='state_capital' id= 'No' value='false' checked> No </lable></p>
+  <input type='submit' value='Submit'/>
+</form>

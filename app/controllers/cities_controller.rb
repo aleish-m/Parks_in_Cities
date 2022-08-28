@@ -14,4 +14,15 @@ class CitiesController < ApplicationController
     city = City.create!(name: params[:city_name], population: params[:city_population], state_capital: params[:state_capital])
     redirect_to '/cities'
   end
+
+  def edit
+    @city = City.find(params[:id])
+  end
+
+  def update
+    city = City.find(params[:id])
+    city.update(name: params[:city_name], population: params[:city_population], state_capital: params[:state_capital])
+    city.save
+    redirect_to "/cities/#{city.id}"
+  end
 end
