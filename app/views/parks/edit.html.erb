@@ -3,16 +3,17 @@
     <a href="/parks" style="margin: 20px;">Park Index</a>
 </nav>
 
-<form action="/cities/<%= @city.id %>/parks" method="post">
+<form action="/parks/<%= @park.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="PATCH" />
 
-  <h2>Add New Park Info for <%= @city.name %></h2>
+  <h2>Edit Park Info for <%= @park.name %></h2>
 
   <p><lable>Park Name:
-  <input type='text' name='park_name' placeholder='City Park'required/></lable></p>
+  <input type='text' name='park_name' required value="<%= @park.name %>"/></lable></p>
 
   <p><lable>How many total acres is this Park?
-  <input type='number' name='park_acres' placeholder='200' required></lable></p>
+  <input type='number' name='park_acres' value="<%= @park.acres %>" required></lable></p>
 
   <p><lable>Does this Park have a Visitor Center?</lable></p>
   <p><lable><input type='radio' name='visitor_center' id='visitor_center_yes' value='true'> Yes </lable>
@@ -23,10 +24,10 @@
   <lable><input type='radio' name='playground' id= 'playground_no' value='false'> No </lable></p>
 
   <p><lable>What hour does the Park open?
-  <input type='number' name='opening_hour' placeholder='5 AM' required></lable></p>
+  <input type='number' name='opening_hour' value="<%= @park.opening_hour %>" required></lable></p>
 
   <p><lable>What hour does the Park close?
-  <input type='number' name='closing_hour' placeholder='10 PM' required></lable></p>
+  <input type='number' name='closing_hour' value="<%= @park.closing_hour %>" required></lable></p>
 
-  <input type='submit' value='Add Park'/>
+  <input type='submit' value='Submit'/>
 </form>

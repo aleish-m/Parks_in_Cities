@@ -50,14 +50,12 @@ RSpec.describe 'city/parks new page', type: :feature do
 
         save_and_open_page
 
-        fill_in("park_name", with: "Palmer Park")
-        fill_in("park_acres", with: 730)
-        choose("visitor_center_no")
-        choose("playground_yes")
-        fill_in("opening_hour", with: 5)
-        fill_in("closing_hour", with: 9)
-
-        click_button('Add Park')
+        expect(page.has_field? "park_name").to be true
+        expect(page.has_field? "park_acres").to be true
+        expect(page.has_field? "visitor_center_no").to be true
+        expect(page.has_field? "opening_hour").to be true
+        expect(page.has_field? "closing_hour").to be true
+        find_button('Add Park').visible?
       end
 
       it "A 'POST' request is sent to the '/cities/:id/parks' route, a new park record is created and I am redirected to the City Parks Index page where I see the new Park listed" do 

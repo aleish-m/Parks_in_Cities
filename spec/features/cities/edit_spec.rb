@@ -41,8 +41,8 @@ RSpec.describe 'cities edit page', type: :feature do
         fill_in("city_name", with: "C Springs")
         fill_in("city_population", with: 30000)
         choose("No")
-        click_button('Submit')
 
+        click_button('Submit')
         expect(current_path).to eq("/cities/#{@city.id}")
 
         save_and_open_page
