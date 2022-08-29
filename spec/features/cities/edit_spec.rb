@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe 'cities edit page', type: :feature do
+RSpec.describe 'Cities Edit page', type: :feature do
 
-  describe "as a visitor" do
+  describe "As a visitor" do
 
     before :each do
       
@@ -14,31 +14,36 @@ RSpec.describe 'cities edit page', type: :feature do
     end
   
   
-    describe 'when I visit /cities' do
+    describe 'When I visit /cities' do
       
-      it 'Next to every city, I see a link to edit that citys info when I click the link I should be taken to that city edit page where I can update its information'do
+      it 'Next to every city, I see a link to edit that citys info' do
         visit '/cities'
-        save_and_open_page
-        
         find_link('Update City Info').visible?
+      end
+    
+    
+      it  'When I click the link I should be taken to that city edit page where I can update its information'do
+        visit '/cities'
         click_link 'Update City Info'
         expect(page).to have_current_path("/cities/#{@city.id}/edit")
       end
     end
 
-    describe 'when I visit /cities/:id' do
+    describe 'When I visit /cities/:id' do
 
-      it 'I see a link to "Update City", when I click the link "Update City" then I am taken to "/cities/:id/edit"' do
+      it 'I see a link to "Update City"' do
         visit "/cities/#{@city.id}"
-        save_and_open_page
-        
         find_link("Update #{@city.name}'s Info").visible?
+      end
+    
+      it 'When I click the link "Update City" then I am taken to "/cities/:id/edit"' do
+        visit "/cities/#{@city.id}"
         click_link "Update #{@city.name}'s Info"
         expect(page).to have_current_path("/cities/#{@city.id}/edit")
       end
     end
     
-    describe 'when I visit /cities/:id/edit' do
+    describe 'When I visit /cities/:id/edit' do
 
       it 'When I am on "/cities/:id/edit" I  see a form to edit the city attributes:' do
         visit "/cities/#{@city.id}/edit"
@@ -52,17 +57,12 @@ RSpec.describe 'cities edit page', type: :feature do
       it 'When I fill out the form with updated information and I click the button to submit the form, then a `PATCH` request is sent to "/cities/:id", and the Cities info is updated,and I am redirected to the Cities Show page where I see the updated info' do
         visit "/cities/#{@city.id}/edit"
 
-        save_and_open_page
-
         fill_in("name", with: "C Springs")
         fill_in("population", with: 30000)
         choose("No")
-
         click_button('Submit')
+
         expect(current_path).to eq("/cities/#{@city.id}")
-
-        save_and_open_page
-
         expect(page).to have_content('C Springs')
         expect(page).to have_content('30000')
       end
