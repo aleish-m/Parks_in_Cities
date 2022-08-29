@@ -14,7 +14,7 @@ RSpec.describe 'park delete button', type: :feature do
     describe 'when I visit /parks/:id' do
       it 'I see a link to delete the park' do
         visit "/parks/#{@park_1.id}"
-        save_and_open_page
+
         find_button("Delete #{@park_1.name}").visible?
       end
 
@@ -24,7 +24,45 @@ RSpec.describe 'park delete button', type: :feature do
         click_button("Delete #{@park_1.name}")
 
         expect(current_path).to eq("/parks")
-        save_and_open_page
+        
+        expect(page).to_not have_content('City Park')
+        expect(page).to have_content("Sloan's Lake Park")
+      end
+    end
+
+    describe 'when I visit /parks' do
+      it 'I see a link to delete the park' do
+        visit "/parks"
+
+        find_button("Delete #{@park_1.name}").visible?
+      end
+
+      it 'When I click the link "Delete Park", a "DELETE" request is sent to "/parks/:id" the park is deleted, I am redirected to the park index page where I no longer see this park' do
+        visit "/parks"
+
+        click_button("Delete #{@park_1.name}")
+
+        expect(current_path).to eq("/parks")
+
+        expect(page).to_not have_content('City Park')
+        expect(page).to have_content("Sloan's Lake Park")
+      end
+    end
+
+    describe 'when I visit cities/parks/:id' do
+      it 'I see a link to delete the park' do
+        visit "/cities/#{@city.id}/parks"
+
+        find_button("Delete #{@park_1.name}").visible?
+      end
+
+      it 'When I click the link "Delete Park", a "DELETE" request is sent to "/parks/:id" the park is deleted, I am redirected to the park index page where I no longer see this park' do
+        visit "/cities/#{@city.id}/parks"
+
+        click_button("Delete #{@park_1.name}")
+
+        expect(current_path).to eq("/parks")
+        
         expect(page).to_not have_content('City Park')
         expect(page).to have_content("Sloan's Lake Park")
       end

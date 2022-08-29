@@ -24,4 +24,5 @@
   </p>
   <p><b>Park Hours: </b><%= park.opening_hour %> AM - <%= park.closing_hour %> PM</p>
   <p><a href="/parks/<%= park.id %>/edit">Update Park Info</a></p>
+  <%= button_to "Delete #{park.name}", "/parks/#{park.id}", method: :delete%>
 <% end %>
