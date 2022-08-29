@@ -33,6 +33,29 @@ RSpec.describe 'cities delete button', type: :feature do
         expect(page).to have_content("Sloan's Lake Park")
       end
     end
+
+    describe 'when I visit /cities' do
+      it 'I see a link to delete the city' do
+        visit "/cities"
+        save_and_open_page
+        find_button("Delete #{@city.name}").visible?
+      end
+
+      it 'When I click the link "Delete City", a "DELETE" request is sent to "/cities" the city is deleted, and all park records are deleted and I am redirected to the city index page where I no longer see this city' do
+        visit "/cities"
+
+        click_button("Delete #{@city.name}")
+
+        expect(current_path).to eq("/cities")
+        save_and_open_page
+        expect(page).to_not have_content('Denver')
+
+        visit '/parks'
+
+        expect(page).to_not have_content('City Park')
+        expect(page).to have_content("Sloan's Lake Park")
+      end
+    end
   end 
 end
 

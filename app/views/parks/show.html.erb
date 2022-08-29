@@ -29,8 +29,4 @@
 
 <p><b>Park Closes at: </b><%= @park.closing_hour %> PM</p>
 
-<form action="/parks/<%= @park.id %>" method="POST">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete <%= @park.name %>"/>
-  </form>
+<%= button_to "Delete #{@park.name}", "/parks/#{@park.id}", method: :delete%>

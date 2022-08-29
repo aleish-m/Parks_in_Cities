@@ -5,12 +5,13 @@
 
 <h1>Cities Index</h1>
 
+<a href="/cities/new">Add New City</a>
+
 <% @cities.each do |city| %>
   <p>
     <b><%= city.name %></b>
     <%="(created: #{city.created_at.strftime("%m/%d/%Y")})" %>
     <a href="/cities/<%= city.id %>/edit">Update City Info</a>
+    <%= button_to "Delete #{city.name}", "/cities/#{city.id}", method: :delete%>
   </p>
   <% end %>
-
-  <a href="/cities/new">Add New City</a>

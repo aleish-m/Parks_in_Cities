@@ -19,8 +19,4 @@
 <p><b>Number of Parks: </b><%= @city.park_count %>
 <a href="/cities/<%= @city.id %>/parks" style="margin: 10px;"> See Parks </a></p>
 
-<form action="/cities/<%= @city.id %>" method="POST">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete <%= @city.name %>"/>
-  </form>
+<%= button_to "Delete #{@city.name}", "/cities/#{@city.id}", method: :delete%>
