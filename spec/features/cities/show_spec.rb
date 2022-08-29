@@ -1,10 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'cities show page', type: :feature do
+RSpec.describe 'Cities Show page', type: :feature do
 
-  describe 'as a visitor' do
-    describe 'when I visit /cities/:id' do
+  describe 'As a visitor' do
+
+    describe 'I visit /cities/:id' do
+
       before :each do
+
         @city = City.create!(name: 'Denver', population: 1000, state_capital: true)
         @city_2= City.create!(name: 'Colorado Springs', population: 190, state_capital: false)
 
@@ -14,18 +17,17 @@ RSpec.describe 'cities show page', type: :feature do
 
       it 'I see the name of the City with that id' do
         visit "/cities/#{@city.id}"
-        save_and_open_page
 
-        expect(page).to have_content(@city.name)
-        expect(page).to_not have_content(@city_2.name)
+        expect(page).to have_content('Denver')
+        expect(page).to_not have_content('Colorado Springs')
 
       end
 
       it 'I see the @city with that id including the population' do
         visit "/cities/#{@city.id}"
 
-        expect(page).to have_content(@city.population)
-        expect(page).to_not have_content(@city_2.population)
+        expect(page).to have_content('Population: 1000')
+        expect(page).to_not have_content('Population: 190')
 
       end
       

@@ -1,10 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe 'park index page', type: :feature do
+RSpec.describe 'Park Index page', type: :feature do
   
-  describe 'as a visitor' do
-    describe 'when I visit /parks' do
+  describe 'As a visitor' do
+
+    describe 'When I visit /parks' do
+
       before :each do
+
         @city_1 = City.create!(name: 'Colorado Springs', population: 100, state_capital: false)
 
         @park_1 = @city_1.parks.create!(name: 'Nancy Lewis Park', acres: 9, visitor_center: false, playground: true, opening_hour: 5, closing_hour: 10)
@@ -12,36 +15,31 @@ RSpec.describe 'park index page', type: :feature do
         @park_3 = @city_1.parks.create!(name: 'Garden of the Gods', acres: 1341, visitor_center: true, playground: false, opening_hour: 5, closing_hour: 9)
       end
 
-      it 'I see each Park name in the system' do 
+      it 'I see each park name in the system' do 
         visit '/parks'
-        save_and_open_page
-
         expect(page).to have_content('Nancy Lewis Park')
         expect(page).to have_content('America the Beautiful Park')
       end
 
-      it 'I see the park with that id including the number of acres' do 
+      it 'I see each parks number of acres' do 
         visit '/parks'
-
         expect(page).to have_content("Acres: 9")
+        expect(page).to have_content("Acres: 17")
       end
 
-      it 'I see the park with that id including if it has a visitor center' do
+      it 'I see if each park has a visitor center' do
         visit '/parks'
-
         expect(page).to have_content('Has Visitor Center? No')
         expect(page).to have_content('Has Visitor Center? Yes')
       end
 
-      it 'I see the park with that id including if it has a playground' do
+      it 'I see if each park has a playground' do
         visit '/parks'
-
         expect(page).to have_content('Has Playground? Yes')
       end
 
-      it 'I see the park with that id including its opening and closing hours' do
+      it 'I see each parks opening and closing hours' do
         visit '/parks'
-
         expect(page).to have_content('Park Hours: 5 AM - 10 PM')
         expect(page).to have_content('Park Hours: 6 AM - 9 PM')
       end
