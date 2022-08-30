@@ -1,7 +1,7 @@
 class CityParksController < ApplicationController
   def index
     @city = City.find(params[:id])
-    @alpha_parks = @city.parks.order(:name)
+    @parks = @city.parks.min_acreage(params[:number]).order(params[:sort])
   end
 
   def new

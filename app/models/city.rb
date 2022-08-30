@@ -4,5 +4,4 @@ class City < ApplicationRecord
   def park_count
     self.parks.count
   end
-  
 end

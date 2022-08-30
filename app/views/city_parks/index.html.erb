@@ -1,15 +1,24 @@
-<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
-    <a href="/cities" style="margin: 20px;">City Index</a>
-    <a href="/parks" style="margin: 20px;">Park Index</a>
-</nav>
-
 <h1><%= @city.name %> </h1>
 
-<p><a href="/cities/<%= @city.id %>/parks/new">Add New Park</a></p>
+<p style="text-align:right;">
+<a href="/cities/<%= @city.id %>/parks/new">Add New Park</a>
 
-<% @alpha_parks.each do |park| %>
+<%= button_to 'Sort Alphabetically', "/cities/#{@city.id}/parks", method: :get, params: {sort: "name"}%>
+</p>
+
+<p><%= form_with url: "/cities/#{@city.id}/parks", method: :get , local: true do |form|%>
+  <%= form.label :number, 'Minimum Acreage:'%>
+  <%= form.number_field :number, value: 0, step: 1, require: true %>
+  <%= form.submit "Update"%>
+<% end %></p>
+
+
+
+<% @parks.each do |park| %>
   <h3><%= park.name %></h3>
+  
   <p><b>Park Size: </b><%= park.acres %> acres</p>
+
   <p><b>Visitor Center? </b>
   <% if park.visitor_center == true %>
     <%= "Yes" %>
@@ -24,7 +33,12 @@
     <%= "No" %>
   <% end %>
   </p>
+
   <p><b>Park Hours: </b><%= park.opening_hour %> AM - <%= park.closing_hour %> PM</p>
-  <p><a href="/parks/<%= park.id %>/edit">Update Park Info</a></p>
-  <%= button_to "Delete #{park.name}", "/parks/#{park.id}", method: :delete%>
+
+  <p><%= button_to 'Veiw Park Info', "/parks/#{park.id}", id: "#{park.name}", method: :get%></p>
+
+  <p><%= button_to 'Update Park Info', "/parks/#{park.id}/edit", id: "#{park.name}", method: :get%></p>
+
+  <p><%= button_to "Delete #{park.name}", "/parks/#{park.id}", method: :delete%></p>
 <% end %>
