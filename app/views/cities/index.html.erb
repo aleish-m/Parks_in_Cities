@@ -1,8 +1,3 @@
-<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
-    <a href="/cities" style="margin: 20px;">City Index</a>
-    <a href="/parks" style="margin: 20px;">Park Index</a>
-</nav>
-
 <h1>Cities Index</h1>
 
 <a href="/cities/new">Add New City</a>
@@ -11,7 +6,8 @@
   <p>
     <b><%= city.name %></b>
     <%="(created: #{city.created_at.strftime("%m/%d/%Y")})" %>
-    <a href="/cities/<%= city.id %>/edit">Update City Info</a>
-    <%= button_to "Delete #{city.name}", "/cities/#{city.id}", method: :delete%>
+    <p><%= button_to "Veiw #{city.name} Info", "/cities/#{city.id}", method: :get%></p>
+    <p><%= button_to "Update Info for #{city.name}", "/cities/#{city.id}/edit", method: :get%></p>
+    <p><%= button_to "Delete #{city.name}", "/cities/#{city.id}", method: :delete%></p>
   </p>
   <% end %>

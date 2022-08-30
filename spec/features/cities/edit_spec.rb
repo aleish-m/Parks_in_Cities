@@ -18,13 +18,13 @@ RSpec.describe 'Cities Edit page', type: :feature do
       
       it 'Next to every city, I see a link to edit that citys info' do
         visit '/cities'
-        find_link('Update City Info').visible?
+        find_button('Update Info for Colorado Springs').visible?
       end
     
     
       it  'When I click the link I should be taken to that city edit page where I can update its information'do
         visit '/cities'
-        click_link 'Update City Info'
+        click_button 'Update Info for Colorado Springs'
         expect(page).to have_current_path("/cities/#{@city.id}/edit")
       end
     end
@@ -33,12 +33,12 @@ RSpec.describe 'Cities Edit page', type: :feature do
 
       it 'I see a link to "Update City"' do
         visit "/cities/#{@city.id}"
-        find_link("Update #{@city.name}'s Info").visible?
+        find_button("Update Info for Colorado Springs").visible?
       end
     
       it 'When I click the link "Update City" then I am taken to "/cities/:id/edit"' do
         visit "/cities/#{@city.id}"
-        click_link "Update #{@city.name}'s Info"
+        click_button "Update Info for Colorado Springs"
         expect(page).to have_current_path("/cities/#{@city.id}/edit")
       end
     end
