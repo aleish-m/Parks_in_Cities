@@ -72,12 +72,65 @@ RSpec.describe 'City Parks Index page', type: :feature do
         expect(page).to have_current_path(cities_path)
       end
 
-      it 'I see that park records are in alphabetical order by name' do
+      it 'I see a link to sort children in alphabetical order' do
         visit "/cities/#{@city_1.id}/parks"
+
+        find_button({value:'Update Park Info', id:"#{@park_1.name}"}).visible?
+
+      end
+
+      it 'When I click on the link, I see that park records are in alphabetical order by name' do
+
+        visit "/cities/#{@city_1.id}/parks"
+
+        expect('Nancy Lewis Park').to appear_before('America the Beautiful Park')
+        expect('America the Beautiful Park').to appear_before('Garden of the Gods')
+        expect('Nancy Lewis Park').to appear_before('Garden of the Gods')
+
+        click_button "Sort Alphabetically"
         
         expect('America the Beautiful Park').to appear_before('Garden of the Gods')
         expect('America the Beautiful Park').to appear_before('Nancy Lewis Park')
         expect('Garden of the Gods').to appear_before('Nancy Lewis Park')
+      end
+
+      it "I see a form that allows me to input a number value" do
+        visit "/cities/#{@city_1.id}/parks"
+
+        expect(page.has_field? "number").to be true
+
+        find_button('Update').visible?
+      end
+
+
+      it "When I input a number value and click the submit button, then I am brought back to the current index page with only the records that meet that threshold shown." do
+        visit "/cities/#{@city_1.id}/parks"
+
+        expect(page).to have_content('Nancy Lewis Park')
+        expect(page).to have_content('America the Beautiful Park')
+        expect(page).to have_content('Garden of the Gods')
+
+        fill_in("number", with: "20")
+        click_button('Update')
+
+        expect(current_path).to eq("/cities/#{@city_1.id}/parks")
+
+        expect(page).to_not have_content('Nancy Lewis Park')
+        expect(page).to_not have_content('America the Beautiful Park')
+        expect(page).to have_content('Garden of the Gods')
+      end
+      
+      it "If I click the submit button with no number entered in form, then I am brought back to the current index page with all records shown." do
+        visit "/cities/#{@city_1.id}/parks"
+
+        fill_in("number", with: " ")
+        click_button('Update')
+
+        expect(current_path).to eq("/cities/#{@city_1.id}/parks")
+
+        expect(page).to have_content('Nancy Lewis Park')
+        expect(page).to have_content('America the Beautiful Park')
+        expect(page).to have_content('Garden of the Gods')
       end
     end
   end
