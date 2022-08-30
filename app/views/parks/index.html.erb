@@ -1,8 +1,3 @@
-<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
-    <a href="/cities" style="margin: 20px;">City Index</a>
-    <a href="/parks" style="margin: 20px;">Park Index</a>
-</nav>
-
 <h1>Park Index</h1>
 
 <% @parks.each do |park| %>
@@ -23,6 +18,8 @@
     <% end %>
   </p>
   <p><b>Park Hours: </b><%= park.opening_hour %> AM - <%= park.closing_hour %> PM</p>
-  <p><a href="/parks/<%= park.id %>/edit">Update Park Info</a></p>
-  <%= button_to "Delete #{park.name}", "/parks/#{park.id}", method: :delete%>
+  
+  <p><%= button_to 'Veiw Park Info', "/parks/#{park.id}", id: "#{park.name}", method: :get%></p>
+  <p><%= button_to 'Update Park Info', "/parks/#{park.id}/edit", id: "#{park.name}", method: :get%></p>
+  <p><%= button_to "Delete #{park.name}", "/parks/#{park.id}", method: :delete%></p>
 <% end %>

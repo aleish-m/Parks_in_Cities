@@ -1,8 +1,3 @@
-<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
-    <a href="/cities" style="margin: 20px;">City Index</a>
-    <a href="/parks" style="margin: 20px;">Park Index</a>
-</nav>
-
 <form action="/parks/<%= @park.id %>" method="post">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="_method" value="PATCH" />

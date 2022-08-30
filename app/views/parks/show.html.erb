@@ -1,11 +1,4 @@
-<nav style="background-color:AntiqueWhite; font-size:20px;padding:10px;">
-    <a href="/cities" style="margin: 20px;">City Index</a>
-    <a href="/parks" style="margin: 20px;">Park Index</a>
-</nav>
-
 <h1><%= @park.name %></h1>
-
-<p><a href="/parks/<%= @park.id %>/edit">Update Park Info</a></p>
 
 <p><b>Total Park Acreage: </b><%= @park.acres %></p>
 
@@ -29,4 +22,5 @@
 
 <p><b>Park Closes at: </b><%= @park.closing_hour %> PM</p>
 
-<%= button_to "Delete #{@park.name}", "/parks/#{@park.id}", method: :delete%>
+<p><%= button_to 'Update Park Info', "/parks/#{@park.id}/edit", id: "#{@park.name}", method: :get %></p>
+<p><%= button_to "Delete #{@park.name}", "/parks/#{@park.id}", method: :delete%></p>

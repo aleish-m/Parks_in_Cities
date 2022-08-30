@@ -19,20 +19,20 @@ RSpec.describe 'Parks Edit page', type: :feature do
       it 'I see a link to "Update Park Info"' do
         visit "/parks"
 
-        find_link({text:'Update Park Info', :href => "/parks/#{@park_1.id}/edit"}).visible?
+        find_button({value:'Update Park Info', id:"#{@park_1.name}"}).visible?
       end
       
       it 'When I click the link "Update Park Info" then I am taken to "/parks/:id/edit"' do
         visit "/parks"
-        click_link ({text:'Update Park Info', :href => "/parks/#{@park_1.id}/edit"})
+        click_button ({value:'Update Park Info', id:"#{@park_1.name}"})
         expect(page).to have_current_path("/parks/#{@park_1.id}/edit")
       end
 
       it 'I see a link to "Update Park Info", next to each park record"' do
         visit "/parks"
 
-        find_link({text:'Update Park Info', :href => "/parks/#{@park_2.id}/edit"}).visible?
-        click_link ({text:'Update Park Info', :href => "/parks/#{@park_2.id}/edit"})
+        find_button({value:'Update Park Info', id:"#{@park_2.name}"}).visible?
+        click_button ({value:'Update Park Info', id:"#{@park_2.name}"})
         expect(page).to have_current_path("/parks/#{@park_2.id}/edit")
       end
     end
@@ -42,16 +42,16 @@ RSpec.describe 'Parks Edit page', type: :feature do
       it 'I see a link to "Update Park Info", when I click the link "Update Park Info" then I am taken to "/parks/:id/edit"' do
         visit "/cities/#{@city.id}/parks"
 
-        find_link({text:'Update Park Info', :href => "/parks/#{@park_1.id}/edit"}).visible?
-        click_link ({text:'Update Park Info', :href => "/parks/#{@park_1.id}/edit"})
+        find_button({value:'Update Park Info', id:"#{@park_1.name}"}).visible?
+        click_button ({value:'Update Park Info', id:"#{@park_1.name}"})
         expect(page).to have_current_path("/parks/#{@park_1.id}/edit")
       end
 
       it 'I see a link to "Update Park Info", next to all records"' do
         visit "/cities/#{@city.id}/parks"
 
-        find_link({text:'Update Park Info', :href => "/parks/#{@park_2.id}/edit"}).visible?
-        find_link({text:'Update Park Info', :href => "/parks/#{@park_3.id}/edit"}).visible?
+        find_button({value:'Update Park Info', id:"#{@park_2.name}"}).visible?
+        find_button({value:'Update Park Info', id:"#{@park_3.name}"}).visible?
       end
     end
 
@@ -60,8 +60,8 @@ RSpec.describe 'Parks Edit page', type: :feature do
       it 'I see a link to "Update Park Info", when I click the link "Update Park Info" then I am taken to "/parks/:id/edit"' do
         visit "/parks/#{@park_1.id}"
 
-        find_link('Update Park Info').visible?
-        click_link 'Update Park Info'
+        find_button('Update Park Info').visible?
+        click_button 'Update Park Info'
         expect(page).to have_current_path("/parks/#{@park_1.id}/edit")
       end
     end
