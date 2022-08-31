@@ -1,24 +1,18 @@
-# README
+# Parks in Cities
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Learning Goals
+  - Design a one to many relationship using a schema designer
+  - Write migrations to create tables with columns of varying data types and foreign keys.
+  - Use Rails to create web pages that allow users to CRUD resources
+  - Create instance and class methods on a Rails model that use ActiveRecord methods and helpers
+  - Write model and feature tests that fully cover data logic and user behavior
 
-Things you may want to cover:
+### Requirements
+  - must use Rails 5.2.x
+  - must use PostgreSQL
+  - must “handroll” all routes (no use of resources syntax)
 
-* Ruby version
+## Schema Design 
+ - This is my schema for the One to Many database realtionship used in this project
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+![Screen Shot 2022-08-24 at 12 23 35 PM](https://user-images.githubusercontent.com/105686836/187572150-6d5daf1b-ddf9-4f3b-9857-2e478072f27e.png)
