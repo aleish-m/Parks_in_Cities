@@ -76,7 +76,6 @@ RSpec.describe 'City Parks Index page', type: :feature do
         visit "/cities/#{@city_1.id}/parks"
 
         find_button({value:'Update Park Info', id:"#{@park_1.name}"}).visible?
-
       end
 
       it 'When I click on the link, I see that park records are in alphabetical order by name' do
