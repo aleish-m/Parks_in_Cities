@@ -4,4 +4,8 @@ class City < ApplicationRecord
   def park_count
     self.parks.count
   end
+
+  def min_acreage(number)
+      parks.where("acres > #{number.to_i}")
+  end
 end
